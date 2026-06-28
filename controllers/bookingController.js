@@ -4,13 +4,11 @@ const Booking = require("../models/Booking");
 exports.createBooking = async (req, res, next) => {
   try {
     const {
-      clientName,
-      clientEmail,
-      clientPhone,
-      shootType,
-      shootDate,
-      duration,
-      location,
+      name,
+      email,
+      phone,
+      date,
+      service,
       message,
     } = req.body;
 
