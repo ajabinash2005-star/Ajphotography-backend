@@ -12,16 +12,20 @@ exports.createBooking = async (req, res, next) => {
       message,
     } = req.body;
 
-    // Basic required-field check (Mongoose validators also run)
-    if (!clientName || !clientEmail || !shootType || !shootDate) {
+    if (!name || !email || !service || !date) {
       return res.status(400).json({
         success: false,
-        message: "clientName, clientEmail, shootType and shootDate are required.",
+        message: "Name, Email, Service and Date are required.",
       });
     }
 
-    // Prevent past-date bookings
-    if (new Date(shootDate) < new Date()) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const selectedDate = new Date(date);
+    selectedDate.setHours(0, 0, 0, 0);
+
+    if (selectedDate < today) {
       return res.status(400).json({
         success: false,
         message: "Shoot date cannot be in the past.",
@@ -29,22 +33,22 @@ exports.createBooking = async (req, res, next) => {
     }
 
     const booking = await Booking.create({
-      clientName,
-      clientEmail,
-      clientPhone,
-      shootType,
-      shootDate,
-      duration,
-      location,
+      clientName: name,
+      clientEmail: email,
+      clientPhone: phone,
+      shootType: service,
+      shootDate: date,
       message,
     });
 
     res.status(201).json({
       success: true,
-      message: "Booking request submitted! We'll be in touch soon.",
+      message: "Booking request submitted successfully!",
       data: booking,
     });
+
   } catch (error) {
+    console.error(error);
     next(error);
   }
 };
