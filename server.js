@@ -18,8 +18,12 @@ const app = express();
 // ── CORS ───────────────────────────────────────────────
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(",").map((o) => o.trim())
-  : ["https://ajphotography-portfolio.vercel.app", "https://ajphotography-admin.vercel.app" , ];
-
+  : [
+      "http://localhost:5173",
+      "http://localhost:3000",
+      "https://ajphotography-portfolio-ljsc.vercel.app",
+      "https://ajphotography-admin.vercel.app",
+    ];
 app.use(
   cors({
     origin: (origin, callback) => {
