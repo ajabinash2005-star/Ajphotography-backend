@@ -9,6 +9,7 @@ const authRoutes = require("./routes/authRoutes");
 const photoRoutes = require("./routes/photoRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 const dashboardRoutes = require('./routes/dashboardRoutes')
+const revenueRoutes = require("./routes/revenueRoutes");
 
 // ── Connect to MongoDB ─────────────────────────────────
 connectDB();
@@ -41,6 +42,7 @@ app.use(
 // ── Body parsers ───────────────────────────────────────
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
+app.use("/api/revenue", revenueRoutes);
 
 // ── Health check ───────────────────────────────────────
 app.get("/api/health", (req, res) => {
