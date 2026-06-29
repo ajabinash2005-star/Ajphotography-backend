@@ -22,7 +22,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
   : [
       "http://localhost:5173",
       "http://localhost:3000",
-      "https://ajphotography-portfolio-ljsc.vercel.app",
+      "https://ajphotography.vercel.app/",
       "https://ajphotography-admin.vercel.app",
     ];
 app.use(
