@@ -9,7 +9,7 @@ exports.getAllPhotos = async (req, res, next) => {
       featured,
       search,
       page = 1,
-      limit = 20,
+      limit = 100,
       sort = "-createdAt",
     } = req.query;
 
